@@ -72,4 +72,6 @@ class TpolecatModuleSpec extends FlatSpec with Matchers {
   it should "select compile options that are supported at 2.11.12" in compileHelloWorld("2.11.12")
 
   it should "select compile options that are supported at 2.12.8" in compileHelloWorld("2.12.8")
+
+  it should "select compile options that are supported at 2.13.0-M5" in compileHelloWorld("2.13.0-M5")
 }
