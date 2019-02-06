@@ -1,0 +1,19 @@
+language: scala
+sudo: required
+dist: trusty
+
+jdk:
+  - openjdk8
+  - openjdk11
+
+env:
+  - MILL_VERSION=0.3.5
+
+script:
+  - curl -L -o ~/bin/mill https://github.com/lihaoyi/mill/releases/download/${MILL_VERSION}/${MILL_VERSION} && chmod +x ~/bin/mill
+  - export PATH=~/bin/mill:$PATH
+  - mill _.test
+
+cache:
+  directories:
+  - $HOME/.coursier
