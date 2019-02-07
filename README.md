@@ -10,6 +10,8 @@ mill-tpolecat is an extension for the [Mill build tool](https://github.com/lihao
 
 This should help to ensure that you are getting the greatest possible benefit from the Scala compiler's many linting options.
 
+It has been tested with versions 0.3.5 and 0.3.6 of mill.
+
 ### Usage
 
 Import the module in `build.sc` using mill's `$ivy` import syntax, and extend `TpolecatModule` in your build definition:
