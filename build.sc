@@ -6,7 +6,7 @@ import ammonite.ops._
 object tpolecat extends ScalaModule with PublishModule {
   def artifactName = T { "mill-tpolecat" }
 
-  def publishVersion = "0.1.1"
+  def publishVersion = "0.1.2"
 
   def scalaVersion = "2.12.8"
 
