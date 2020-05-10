@@ -1,17 +1,17 @@
+import $ivy.`de.tototec::de.tobiasroeser.mill.integrationtest:0.2.1`
+import de.tobiasroeser.mill.integrationtest._
 import mill._
 import mill.scalalib._
 import publish._
-import ammonite.ops._
 
-object tpolecat extends ScalaModule with PublishModule {
+object tpolecat extends Cross[TpolecatModule](crossScalaVersions: _*)
+class TpolecatModule(val crossScalaVersion: String) extends CrossScalaModule with PublishModule {
   def artifactName = T { "mill-tpolecat" }
 
   def publishVersion = "0.1.2"
 
-  def scalaVersion = "2.12.8"
-
   def pomSettings = PomSettings(
-    description = artifactName(),
+    description = "scalac options for the enlightened",
     organization = "io.github.davidgregory084",
     url = "https://github.com/DavidGregory084/mill-tpolecat",
     licenses = Seq(License.`Apache-2.0`),
@@ -19,14 +19,17 @@ object tpolecat extends ScalaModule with PublishModule {
     developers = Seq(Developer("DavidGregory084", "David Gregory", "https://github.com/DavidGregory084"))
   )
 
-  def compileIvyDeps = Agg(ivy"""com.lihaoyi::mill-scalalib:${sys.props("MILL_VERSION")}""")
-
-   object test extends Tests {
-    def ivyDeps = Agg(
-      ivy"com.lihaoyi::ammonite-ops:1.6.3",
-      ivy"io.get-coursier::coursier:1.1.0-M11",
-      ivy"org.scalatest::scalatest:3.0.5"
-    )
-    def testFrameworks = Seq("org.scalatest.tools.Framework")
-   }
+  lazy val millVersion = millVersionFor(crossScalaVersion)
+  def compileIvyDeps = Agg(ivy"""com.lihaoyi::mill-scalalib:$millVersion""")
 }
+
+object itest extends Cross[IntegrationTestModule](crossScalaVersions: _*)
+class IntegrationTestModule(val crossScalaVersion: String) extends MillIntegrationTestModule {
+  override def millSourcePath = super.millSourcePath / ammonite.ops.up
+
+  def millTestVersion  = millVersionFor(crossScalaVersion)
+  def pluginsUnderTest = Seq(tpolecat(crossScalaVersion))
+}
+
+lazy val crossScalaVersions = Seq("2.13.2", "2.12.11")
+def millVersionFor(scalaVersion: String) = if (scalaVersion.startsWith("2.13")) "0.6.2-35-7d1144" else "0.6.2"
