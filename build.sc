@@ -8,7 +8,7 @@ object tpolecat extends Cross[TpolecatModule](crossScalaVersions: _*)
 class TpolecatModule(val crossScalaVersion: String) extends CrossScalaModule with PublishModule {
   def artifactName = T { "mill-tpolecat" }
 
-  def publishVersion = "0.1.2"
+  def publishVersion = "0.1.3"
 
   def pomSettings = PomSettings(
     description = "scalac options for the enlightened",
