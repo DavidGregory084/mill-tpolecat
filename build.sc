@@ -1,4 +1,4 @@
-import $ivy.`de.tototec::de.tobiasroeser.mill.integrationtest:0.2.1`
+import $ivy.`de.tototec::de.tobiasroeser.mill.integrationtest:0.3.3`
 import de.tobiasroeser.mill.integrationtest._
 import mill._
 import mill.scalalib._
@@ -31,5 +31,5 @@ class IntegrationTestModule(val crossScalaVersion: String) extends MillIntegrati
   def pluginsUnderTest = Seq(tpolecat(crossScalaVersion))
 }
 
-lazy val crossScalaVersions = Seq("2.13.2", "2.12.11")
-def millVersionFor(scalaVersion: String) = if (scalaVersion.startsWith("2.13")) "0.6.2-35-7d1144" else "0.6.2"
+lazy val crossScalaVersions = Seq("2.13.3", "2.12.12")
+def millVersionFor(scalaVersion: String) = if (scalaVersion.startsWith("2.13")) "0.7.4" else "0.6.3"

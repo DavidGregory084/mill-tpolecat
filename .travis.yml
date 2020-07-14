@@ -6,13 +6,8 @@ jdk:
   - openjdk8
   - openjdk11
 
-env:
-  - MILL_VERSION=0.6.2
-
 script:
-  - curl -L -o ~/bin/mill https://github.com/lihaoyi/mill/releases/download/${MILL_VERSION}/${MILL_VERSION} && chmod +x ~/bin/mill
-  - export PATH=~/bin/mill:$PATH
-  - mill itest[_].test
+  - ./mill __.test
 
 cache:
   directories:
