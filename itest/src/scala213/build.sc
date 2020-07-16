@@ -11,6 +11,7 @@ def verify() = T.command {
   assert(project.scalacOptions() == Seq(
     "-encoding",
     "utf8",
+    "-Xsource:3",
     "-explaintypes",
     "-feature",
     "-language:existentials",
