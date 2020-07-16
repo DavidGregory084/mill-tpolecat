@@ -5,6 +5,7 @@ import scala.Ordering.Implicits._
 
 object Tpolecat {
   private val allScalacOptions = Seq(
+    ScalacOption("-Xsource:3", isSupported = v211 <= _),                                                                     // Treat compiler input as Scala source for the specified version, see scala/bug#8126.
     ScalacOption("-deprecation", isSupported = version => version < v213 || v300 <= version),                                // Emit warning and location for usages of deprecated APIs. Not really removed but deprecated in 2.13.
     ScalacOption("-migration", isSupported = v300 <= _),                                                                     // Emit warning and location for migration issues from Scala 2.
     ScalacOption("-explaintypes", isSupported = _ < v300),                                                                   // Explain type errors in more detail.
@@ -70,8 +71,8 @@ object Tpolecat {
     ScalacOption("-Ypartial-unification", isSupported = version => ScalaVersion(2, 11, 9) <= version && version < v213)      // Enable partial unification in type constructor inference
   )
 
-  def scalacOptionsFor(scalaVersion: String): List[String] = {
-    val commonOpts = List("-encoding", "utf8")
+  def scalacOptionsFor(scalaVersion: String): Seq[String] = {
+    val commonOpts = Seq("-encoding", "utf8")
     val scalaVer = ScalaVersion(scalaVersion)
     val versionedOpts = allScalacOptions.filter(_.isSupported(scalaVer)).map(_.name)
 
