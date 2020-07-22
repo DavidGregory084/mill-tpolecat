@@ -32,4 +32,4 @@ class IntegrationTestModule(val crossScalaVersion: String) extends MillIntegrati
 }
 
 lazy val crossScalaVersions = Seq("2.13.3", "2.12.12")
-def millVersionFor(scalaVersion: String) = if (scalaVersion.startsWith("2.13")) "0.7.4" else "0.6.3"
+def millVersionFor(scalaVersion: String) = if (scalaVersion.startsWith("2.13")) "0.8.0" else "0.6.3"
