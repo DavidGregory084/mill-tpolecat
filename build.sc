@@ -1,15 +1,14 @@
-import $ivy.`de.tototec::de.tobiasroeser.mill.integrationtest:0.3.3`
+import $ivy.`de.tototec::de.tobiasroeser.mill.integrationtest_mill0.9:0.4.0`
 import de.tobiasroeser.mill.integrationtest._
 import mill._
 import mill.scalalib._
 import publish._
 
-object tpolecat extends Cross[TpolecatModule](crossScalaVersions: _*)
-class TpolecatModule(val crossScalaVersion: String) extends CrossScalaModule with PublishModule {
-  def artifactName = T { "mill-tpolecat" }
+object tpolecat extends ScalaModule with PublishModule {
+  def scalaVersion = "2.13.4"
+  def artifactName = "mill-tpolecat"
 
   def publishVersion = "0.1.4"
-
   def pomSettings = PomSettings(
     description = "scalac options for the enlightened",
     organization = "io.github.davidgregory084",
@@ -19,17 +18,11 @@ class TpolecatModule(val crossScalaVersion: String) extends CrossScalaModule wit
     developers = Seq(Developer("DavidGregory084", "David Gregory", "https://github.com/DavidGregory084"))
   )
 
-  lazy val millVersion = millVersionFor(crossScalaVersion)
-  def compileIvyDeps = Agg(ivy"""com.lihaoyi::mill-scalalib:$millVersion""")
+  lazy val millVersion = "0.9.3"
+  def compileIvyDeps = Agg(ivy"com.lihaoyi::mill-scalalib:$millVersion")
 }
 
-object itest extends Cross[IntegrationTestModule](crossScalaVersions: _*)
-class IntegrationTestModule(val crossScalaVersion: String) extends MillIntegrationTestModule {
-  override def millSourcePath = super.millSourcePath / ammonite.ops.up
-
-  def millTestVersion  = millVersionFor(crossScalaVersion)
-  def pluginsUnderTest = Seq(tpolecat(crossScalaVersion))
+object itest extends MillIntegrationTestModule {
+  def millTestVersion  = tpolecat.millVersion
+  def pluginsUnderTest = Seq(tpolecat)
 }
-
-lazy val crossScalaVersions = Seq("2.13.3", "2.12.12")
-def millVersionFor(scalaVersion: String) = if (scalaVersion.startsWith("2.13")) "0.8.0" else "0.6.3"
