@@ -8,7 +8,7 @@ object tpolecat extends ScalaModule with PublishModule {
   def scalaVersion = "2.13.4"
   def artifactName = "mill-tpolecat"
 
-  def publishVersion = "0.1.4"
+  def publishVersion = "0.2.0"
   def pomSettings = PomSettings(
     description = "scalac options for the enlightened",
     organization = "io.github.davidgregory084",
