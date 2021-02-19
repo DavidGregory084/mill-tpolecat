@@ -47,6 +47,7 @@ object core extends TpolecatModule {
 
 I can't promise this plugin will work for old minor releases of Scala. It has been tested with:
 
+* 3.0.0-RC1
 * 2.13.2
 * 2.12.11
 * 2.11.12

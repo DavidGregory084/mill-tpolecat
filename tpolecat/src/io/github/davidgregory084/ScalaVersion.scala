@@ -7,6 +7,7 @@ object ScalaVersion {
   def apply(scalaVersion: String): ScalaVersion = scalaVersion match {
     case ReleaseVersion(major, minor, patch) => ScalaVersion(major.toInt, minor.toInt, patch.toInt)
     case MinorSnapshotVersion(major, minor, patch) => ScalaVersion(major.toInt, minor.toInt, patch.toInt)
+    case Scala3Version(minor, patch, _) => ScalaVersion(3, minor.toInt, patch.toInt)
     case DottyVersion("0", minor, patch) => ScalaVersion(3, minor.toInt, patch.toInt)
   }
 
