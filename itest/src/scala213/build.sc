@@ -4,7 +4,7 @@ import mill._
 import mill.scalalib.ScalaModule
 
 object project extends ScalaModule with TpolecatModule {
-  override def scalaVersion = "2.13.2"
+  override def scalaVersion = "2.13.7"
 }
 
 def verify() = T.command {
@@ -29,7 +29,6 @@ def verify() = T.command {
     "-Xlint:inaccessible",
     "-Xlint:infer-any",
     "-Xlint:missing-interpolator",
-    "-Xlint:nullary-override",
     "-Xlint:nullary-unit",
     "-Xlint:option-implicit",
     "-Xlint:package-object-classes",
@@ -41,6 +40,7 @@ def verify() = T.command {
     "-Wdead-code",
     "-Wextra-implicit",
     "-Wnumeric-widen",
+    "-Xlint:implicit-recursion",
     "-Wunused:implicits",
     "-Wunused:explicits",
     "-Wunused:imports",
@@ -48,6 +48,8 @@ def verify() = T.command {
     "-Wunused:params",
     "-Wunused:patvars",
     "-Wunused:privates",
-    "-Wvalue-discard"
+    "-Wvalue-discard",
+    "-Vimplicits",
+    "-Vtype-diffs"
   ))
 }
