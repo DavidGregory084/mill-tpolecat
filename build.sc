@@ -9,10 +9,9 @@ val millVersions                           = Seq("0.10.0", "0.9.12")
 def millBinaryVersion(millVersion: String) = scalaNativeBinaryVersion(millVersion)
 
 object `mill-tpolecat` extends Cross[MillTpolecatCross](millVersions: _*)
-class MillTpolecatCross(millVersion: String) extends ScalaModule with PublishModule {
-  override def millSourcePath = super.millSourcePath / os.up
-  override def artifactName   = s"${millModuleSegments.parts.init.mkString("-")}_mill${millBinaryVersion(millVersion)}"
-  override def scalaVersion   = "2.13.7"
+class MillTpolecatCross(millVersion: String) extends CrossModuleBase with PublishModule {
+  override def crossScalaVersion = "2.13.7"
+  override def artifactSuffix    = s"_mill${millBinaryVersion(millVersion)}" + super.artifactSuffix()
 
   def compileIvyDeps = Agg(ivy"com.lihaoyi::mill-scalalib:$millVersion")
 
