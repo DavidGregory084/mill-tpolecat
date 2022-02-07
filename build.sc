@@ -1,5 +1,7 @@
 import $ivy.`de.tototec::de.tobiasroeser.mill.integrationtest_mill0.9:0.4.1-30-f29f55`
 import de.tobiasroeser.mill.integrationtest._
+import $ivy.`de.tototec::de.tobiasroeser.mill.vcs.version_mill0.9:0.1.4`
+import de.tobiasroeser.mill.vcs.version.VcsVersion
 import mill._
 import mill.scalalib._
 import mill.scalalib.api.Util.scalaNativeBinaryVersion
@@ -15,7 +17,8 @@ class MillTpolecatCross(millVersion: String) extends CrossModuleBase with Publis
 
   def compileIvyDeps = Agg(ivy"com.lihaoyi::mill-scalalib:$millVersion")
 
-  def publishVersion = "0.2.0"
+  def publishVersion: T[String] = VcsVersion.vcsState().format()
+
   def pomSettings = PomSettings(
     description = "scalac options for the enlightened",
     organization = "io.github.davidgregory084",
