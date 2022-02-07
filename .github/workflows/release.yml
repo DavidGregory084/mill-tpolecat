@@ -41,5 +41,5 @@ jobs:
         ./mill mill.scalalib.PublishModule/publishAll \
           --publishArtifacts __.publishArtifacts \
           --sonatypeCreds ${{ secrets.SONATYPE_USERNAME }}:${{secrets.SONATYPE_PASSWORD }} \
-          --gpgArgs --passphrase ${{ secrets.PGP_PASSPHRASE }},--batch,--yes,-a,-b \
+          --gpgArgs --passphrase '${{ secrets.PGP_PASSPHRASE }}',--batch,--yes,-a,-b \
           --release true
