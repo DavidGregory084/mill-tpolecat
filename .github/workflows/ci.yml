@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        java-version: [8, 11, 17]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Set up JDK & mill
+      uses: coursier/setup-action@v1
+      with:
+        jvm: "adopt:${{ matrix.java-version }}"
+        apps: mill
+
+    - name: Run tests
+      run: |
+        ./mill __.test
