@@ -19,7 +19,7 @@ jobs:
     - name: Set up JDK & mill
       uses: coursier/setup-action@v1
       with:
-        jvm: "adopt:${{ matrix.java-version }}"
+        jvm: "adoptium:${{ matrix.java-version }}"
         apps: mill
 
     - name: Run tests
