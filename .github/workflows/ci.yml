@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        java-version: [8, 11, 17]
+        java-version: [8, 11]
 
     steps:
     - name: Checkout
@@ -19,7 +19,7 @@ jobs:
     - name: Set up JDK & mill
       uses: coursier/setup-action@v1
       with:
-        jvm: "adoptium:${{ matrix.java-version }}"
+        jvm: "adopt:${{ matrix.java-version }}"
         apps: mill
 
     - name: Run tests
