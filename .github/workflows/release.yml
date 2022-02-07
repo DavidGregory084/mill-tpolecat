@@ -36,7 +36,6 @@ jobs:
         ./mill __.test
 
     - name: Publish release
-      if: ${{ github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main' }}
       run: |
         export GPG_TTY=$(tty)
         ./mill mill.scalalib.PublishModule/publishAll \
