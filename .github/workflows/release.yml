@@ -1,0 +1,45 @@
+name: Release
+
+on:
+  push:
+    branches: [master, main]
+    tags: ["v[0-9]+.[0-9]+.[0-9]+"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Set up JDK & mill
+      uses: coursier/setup-action@v1
+      with:
+        jvm: "adopt:8"
+        apps: mill
+
+    - name: Set up GPG
+      run: |
+        mkdir ~/.gnupg && chmod 700 ~/.gnupg
+        echo use-agent >> ~/.gnupg/gpg.conf
+        echo pinentry-mode loopback >> ~/.gnupg/gpg.conf
+        echo allow-loopback-pinentry >> ~/.gnupg/gpg-agent.conf
+        chmod 600 ~/.gnupg/*
+        echo RELOADAGENT | gpg-connect-agent
+        echo $PGP_SECRET | base64 --decode | gpg --import --no-tty --batch --yes
+      env:
+        PGP_SECRET: ${{ secrets.PGP_SECRET }}
+
+    - name: Run tests
+      run: |
+        ./mill __.test
+
+    - name: Publish release
+      run: |
+        export GPG_TTY=$(tty)
+        ./mill mill.scalalib.PublishModule/publishAll \
+          --publishArtifacts __.publishArtifacts \
+          --sonatypeCreds ${{ secrets.SONATYPE_USERNAME }}:${{secrets.SONATYPE_PASSWORD }} \
+          --gpgArgs --passphrase=${{ secrets.PGP_PASSPHRASE }},--batch,--yes,-a,-b \
+          --release true
