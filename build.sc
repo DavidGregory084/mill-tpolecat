@@ -17,7 +17,7 @@ class MillTpolecatCross(millVersion: String) extends CrossModuleBase with Publis
 
   def compileIvyDeps = Agg(ivy"com.lihaoyi::mill-scalalib:$millVersion")
 
-  def publishVersion: T[String] = VcsVersion.vcsState().format()
+  def publishVersion: T[String] = VcsVersion.vcsState().format(tagModifier = _.drop(1))
 
   def pomSettings = PomSettings(
     description = "scalac options for the enlightened",
