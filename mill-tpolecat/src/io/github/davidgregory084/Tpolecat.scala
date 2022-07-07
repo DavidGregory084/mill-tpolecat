@@ -5,7 +5,7 @@ import scala.Ordering.Implicits._
 
 object Tpolecat {
   private val allScalacOptions = Seq(
-    ScalacOption("-Xsource:3", isSupported = version => v211 <= version || version < v300),                                                                     // Treat compiler input as Scala source for the specified version, see scala/bug#8126.
+    ScalacOption("-Xsource:3", isSupported = version => v211 <= version && version < v300),                                  // Treat compiler input as Scala source for the specified version, see scala/bug#8126.
     ScalacOption("-deprecation", isSupported = version => version < v213 || v300 <= version),                                // Emit warning and location for usages of deprecated APIs. Not really removed but deprecated in 2.13.
     ScalacOption("-migration", isSupported = v300 <= _),                                                                     // Emit warning and location for migration issues from Scala 2.
     ScalacOption("-explaintypes", isSupported = _ < v300),                                                                   // Explain type errors in more detail.

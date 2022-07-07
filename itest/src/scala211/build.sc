@@ -47,5 +47,5 @@ def verify() = T.command {
     "-Ywarn-unused-import",
     "-Ywarn-value-discard",
     "-Ypartial-unification"
-  ))
+  ), s"scalacOptions did not match, got instead: ${project.scalacOptions()}")
 }

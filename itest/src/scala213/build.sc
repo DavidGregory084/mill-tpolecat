@@ -4,7 +4,7 @@ import mill._
 import mill.scalalib.ScalaModule
 
 object project extends ScalaModule with TpolecatModule {
-  override def scalaVersion = "2.13.7"
+  override def scalaVersion = "2.13.8"
 }
 
 def verify() = T.command {
@@ -51,5 +51,5 @@ def verify() = T.command {
     "-Wvalue-discard",
     "-Vimplicits",
     "-Vtype-diffs"
-  ))
+  ), s"scalacOptions did not match, got instead: ${project.scalacOptions()}")
 }
