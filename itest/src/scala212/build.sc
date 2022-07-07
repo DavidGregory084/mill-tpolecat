@@ -4,7 +4,7 @@ import mill._
 import mill.scalalib.ScalaModule
 
 object project extends ScalaModule with TpolecatModule {
-  override def scalaVersion = "2.12.12"
+  override def scalaVersion = "2.12.15"
 }
 
 def verify() = T.command {
