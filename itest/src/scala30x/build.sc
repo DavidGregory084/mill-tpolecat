@@ -12,13 +12,14 @@ def verify() = T.command {
     "-encoding",
     "utf8",
     "-deprecation",
-    "-migration",
     "-explain-types",
     "-explain",
     "-feature",
-    "-language:existentials,experimental.macros,higherKinds,implicitConversions",
+    "-language:experimental.macros",
+    "-language:higherKinds",
+    "-language:implicitConversions",
     "-unchecked",
     "-Xfatal-warnings",
-    "-Ykind-projector"
+    "-Ykind-projector",
   ), s"scalacOptions did not match, got instead: ${project.scalacOptions()}")
 }
