@@ -1,13 +1,13 @@
-import $ivy.`de.tototec::de.tobiasroeser.mill.integrationtest_mill0.9:0.4.1-30-f29f55`
+import $ivy.`de.tototec::de.tobiasroeser.mill.integrationtest::0.6.0`
 import de.tobiasroeser.mill.integrationtest._
-import $ivy.`de.tototec::de.tobiasroeser.mill.vcs.version_mill0.9:0.1.4`
+import $ivy.`de.tototec::de.tobiasroeser.mill.vcs.version::0.1.4`
 import de.tobiasroeser.mill.vcs.version.VcsVersion
 import mill._
 import mill.scalalib._
 import mill.scalalib.api.Util.scalaNativeBinaryVersion
 import publish._
 
-val millVersions                           = Seq("0.10.0", "0.9.12")
+val millVersions                           = Seq("0.10.5", "0.9.12")
 def millBinaryVersion(millVersion: String) = scalaNativeBinaryVersion(millVersion)
 
 object `mill-tpolecat` extends Cross[MillTpolecatCross](millVersions: _*)

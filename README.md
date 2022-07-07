@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/DavidGregory084/mill-tpolecat/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/DavidGregory084/mill-tpolecat/actions/workflows/ci.yml)
 [![License](https://img.shields.io/github/license/DavidGregory084/mill-tpolecat.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Latest Version](https://img.shields.io/maven-central/v/io.github.davidgregory084/mill-tpolecat_mill0.10_2.13.svg)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22io.github.davidgregory084%22%20AND%20a%3A%22mill-tpolecat_mill0.10_2.13%22)
+![Maven Central](https://img.shields.io/maven-central/v/io.github.davidgregory084/mill-tpolecat_mill0.10_2.13)
 
 ### scalac options for the enlightened
 
