@@ -1,23 +1,23 @@
-import $ivy.`de.tototec::de.tobiasroeser.mill.integrationtest::0.6.0`
+import $ivy.`de.tototec::de.tobiasroeser.mill.integrationtest::0.6.1`
 import de.tobiasroeser.mill.integrationtest._
-import $ivy.`de.tototec::de.tobiasroeser.mill.vcs.version::0.1.4`
+import $ivy.`de.tototec::de.tobiasroeser.mill.vcs.version::0.3.0`
 import de.tobiasroeser.mill.vcs.version.VcsVersion
 import mill._
 import mill.scalalib._
 import mill.scalalib.api.Util.scalaNativeBinaryVersion
 import publish._
 
-val millVersions                           = Seq("0.10.5", "0.9.12")
+val millVersions                           = Seq("0.10.8", "0.9.12")
 def millBinaryVersion(millVersion: String) = scalaNativeBinaryVersion(millVersion)
 
 object `mill-tpolecat` extends Cross[MillTpolecatCross](millVersions: _*)
 class MillTpolecatCross(millVersion: String) extends CrossModuleBase with PublishModule {
-  override def crossScalaVersion = "2.13.7"
+  override def crossScalaVersion = "2.13.10"
   override def artifactSuffix    = s"_mill${millBinaryVersion(millVersion)}" + super.artifactSuffix()
 
   def compileIvyDeps = Agg(ivy"com.lihaoyi::mill-scalalib:$millVersion")
 
-  def publishVersion: T[String] = VcsVersion.vcsState().format(tagModifier = _.dropWhile(_ == 'v'))
+  def publishVersion: T[String] = VcsVersion.vcsState().format()
 
   def pomSettings = PomSettings(
     description = "scalac options for the enlightened",
