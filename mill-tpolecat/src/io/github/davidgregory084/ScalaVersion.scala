@@ -8,6 +8,8 @@ object ScalaVersion {
     case ReleaseVersion(major, minor, patch) => ScalaVersion(major.toInt, minor.toInt, patch.toInt)
     case MinorSnapshotVersion(major, minor, patch) => ScalaVersion(major.toInt, minor.toInt, patch.toInt)
     case DottyVersion("0", minor, patch) => ScalaVersion(3, minor.toInt, patch.toInt)
+    // Fallback for Scala 3 NIGHTLY versions. In this scenario we just capture and revert back to the last stable.
+    case Scala3Version(minor, patch) => ScalaVersion(3, minor.toInt, patch.toInt)
   }
 
   val v211 = ScalaVersion(2, 11, 0)
