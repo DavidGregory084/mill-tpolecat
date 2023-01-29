@@ -7,7 +7,7 @@ import mill.scalalib._
 import mill.scalalib.api.Util.scalaNativeBinaryVersion
 import publish._
 
-val millVersions                           = Seq("0.10.10", "0.9.12")
+val millVersions                           = Seq("0.10.11", "0.9.12")
 def millBinaryVersion(millVersion: String) = scalaNativeBinaryVersion(millVersion)
 
 object `mill-tpolecat` extends Cross[MillTpolecatCross](millVersions: _*)
