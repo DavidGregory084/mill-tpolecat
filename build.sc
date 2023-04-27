@@ -1,6 +1,6 @@
 import $ivy.`de.tototec::de.tobiasroeser.mill.integrationtest::0.6.1`
 import de.tobiasroeser.mill.integrationtest._
-import $ivy.`de.tototec::de.tobiasroeser.mill.vcs.version::0.3.0`
+import $ivy.`de.tototec::de.tobiasroeser.mill.vcs.version::0.3.1`
 import de.tobiasroeser.mill.vcs.version.VcsVersion
 import mill._
 import mill.scalalib._
