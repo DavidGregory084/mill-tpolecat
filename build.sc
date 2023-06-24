@@ -12,7 +12,7 @@ def millBinaryVersion(millVersion: String) = scalaNativeBinaryVersion(millVersio
 
 object `mill-tpolecat` extends Cross[MillTpolecatCross](millVersions: _*)
 class MillTpolecatCross(millVersion: String) extends CrossModuleBase with PublishModule {
-  override def crossScalaVersion = "2.13.10"
+  override def crossScalaVersion = "2.13.11"
   override def artifactSuffix    = s"_mill${millBinaryVersion(millVersion)}" + super.artifactSuffix()
 
   def compileIvyDeps = Agg(ivy"com.lihaoyi::mill-scalalib:$millVersion")
