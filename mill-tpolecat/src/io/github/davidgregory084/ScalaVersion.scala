@@ -1,6 +1,6 @@
 package io.github.davidgregory084
 
-import mill.scalalib.api.Util._
+import mill.scalalib.api.ZincWorkerUtil._
 
 case class ScalaVersion(maj: Int, min: Int, patch: Int)
 object ScalaVersion {
