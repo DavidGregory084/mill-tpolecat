@@ -1,4 +1,4 @@
-import $exec.plugins
+import $file.plugins
 import io.github.davidgregory084.TpolecatModule
 import mill._
 import mill.scalalib.ScalaModule
