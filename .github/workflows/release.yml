@@ -33,7 +33,11 @@ jobs:
       run: |
         ./mill mill.scalalib.PublishModule/publishAll \
           --publishArtifacts __.publishArtifacts \
-          --sonatypeCreds ${{ secrets.SONATYPE_USERNAME }}:${{secrets.SONATYPE_PASSWORD }} \
-          --gpgArgs '--passphrase=${{ secrets.PGP_PASSPHRASE }},--no-tty,--pinentry-mode,loopback,--batch,--yes,-a,-b' \
+          --sonatypeCreds "$SONATYPE_USERNAME:$SONATYPE_PASSWORD" \
+          --gpgArgs "--passphrase=$PGP_PASSPHRASE,--no-tty,--pinentry-mode,loopback,--batch,--yes,-a,-b" \
           --signed true \
           --release true
+      env:
+        SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
+        SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
+        PGP_PASSPHRASE: ${{ secrets.PGP_PASSPHRASE }}
