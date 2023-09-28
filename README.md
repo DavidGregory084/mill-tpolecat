@@ -17,7 +17,7 @@ Import the module in `build.sc` using mill's `$ivy` import syntax, and extend `T
 ```scala
 // build.sc
 
-import $ivy.`io.github.davidgregory084::mill-tpolecat::0.3.2`
+import $ivy.`io.github.davidgregory084::mill-tpolecat::0.3.5`
 
 import io.github.davidgregory084.TpolecatModule
 
@@ -33,7 +33,7 @@ If necessary you can filter out scalac options that are not appropriate for your
 ```scala
 // build.sc
 
-import $ivy.`io.github.davidgregory084::mill-tpolecat_mill0.10:0.3.2`
+import $ivy.`io.github.davidgregory084::mill-tpolecat_mill0.10:0.3.5`
 
 import io.github.davidgregory084.TpolecatModule
 
