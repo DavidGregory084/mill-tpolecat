@@ -1,4 +1,4 @@
-import $ivy.`de.tototec::de.tobiasroeser.mill.integrationtest::0.7.1`
+import $ivy.`de.tototec::de.tobiasroeser.mill.integrationtest::0.7.3`
 import de.tobiasroeser.mill.integrationtest._
 import $ivy.`de.tototec::de.tobiasroeser.mill.vcs.version::0.4.0`
 import de.tobiasroeser.mill.vcs.version.VcsVersion
